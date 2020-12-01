@@ -18,13 +18,14 @@ const Search = styled.div`
         height: 100%;
         background-color: rgba(216, 216, 216, 0);
         padding: 0 1%;
+        text-align: center;
     }
 `
 
 function SearchBar() {
     return (
-        <Search>
-            <input type="text" placeholder="Name the world"/>
+        <Search >
+            <input type="search" placeholder="Name the country"/>
         </Search>
     )
 }
