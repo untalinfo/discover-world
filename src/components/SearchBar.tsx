@@ -25,7 +25,7 @@ const Search = styled.div`
 function SearchBar() {
     return (
         <Search >
-            <input type="search" placeholder="Name the country"/>
+            <input type="search" placeholder="Name of country"/>
         </Search>
     )
 }
