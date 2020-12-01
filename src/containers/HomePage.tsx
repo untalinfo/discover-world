@@ -6,6 +6,8 @@ import SearchBar from '../components/SearchBar'
 import FilterLanguage from '../components/FilterLanguage'
 import FilterCurrency from '../components/FilterCurrency'
 import FilterRegion from '../components/FilterRegion'
+import DisplayCountry from '../components/DisplayCountry'
+
 
 const ContainerFilters = styled.section`
     width: 60vw;
@@ -14,6 +16,17 @@ const ContainerFilters = styled.section`
     margin: auto;
     display: flex;
     justify-content: space-between;
+`
+const ContainerDisplay = styled.main`
+    width: 40vw;
+    margin: auto;
+    display: flex;
+    justify-content:center;
+
+    a{
+        text-decoration: none;
+    }
+    
 `
 
 function HomePage(): JSX.Element {
@@ -26,6 +39,9 @@ function HomePage(): JSX.Element {
                 <FilterCurrency />
                 <FilterRegion />
             </ContainerFilters>
+            <ContainerDisplay>
+                <DisplayCountry/>
+            </ContainerDisplay>
             <Footer />
         </>
     )
