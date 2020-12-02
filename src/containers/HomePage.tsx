@@ -54,53 +54,80 @@ const ContainerDisplay = styled.main`
     
 `;
 
-function HomePage(props: any): JSX.Element {
-
-    const COUNTRIES = gql`
-    query {
-            Country {
+const WORLD_DATA = gql`
+query {
+        Region {
             name
-            alpha2Code
-            area
-            population
-            capital
-            subregion {
+        }
+        Currency {
+            name
+        }
+        Language {
+            name
+        }
+        Country {
+        name
+        alpha2Code
+        area
+        population
+        capital
+        subregion {
+            name
+            region {
                 name
-                region {
-                    name
-                }
-            }
-            officialLanguages {
-                name
-            }
-            currencies {
-                name
-            }
-            flag {
-                emoji
             }
         }
+        officialLanguages {
+            name
+        }
+        currencies {
+            name
+        }
+        flag {
+            emoji
+        }
     }
+}
 `;
 
-    const [countries, setCountries] = useState<[]>([]);
+function HomePage(props: any): JSX.Element {
 
-    const { loading, data, error } = useQuery(COUNTRIES)
+
+    const [countries, setCountries] = useState<[]>([]);
+    const [languageOptions, setLanguageOptions] = useState<[]>([]);
+    const [regionOptions, setRegionOptions] = useState<[]>([]);
+    const [currencyOptions, setCurrencyOptions] = useState<[]>([]);
+    const [filters, setFilters] = useState<any>({ language: '', currency: '', region: '' });
+
+    const { loading, data, error } = useQuery(WORLD_DATA)
 
     useEffect(() => {
         if (data) {
             setCountries(data.Country)
+            setLanguageOptions(data.Language)
+            setCurrencyOptions(data.Currency)
+            setRegionOptions(data.Region)
         }
     }, [data])
+
+    const filterSelected = (filterName: string, value: string) => {
+
+
+        filters[filterName] = value;
+        setFilters(filters)
+        console.log(filters)
+        
+
+    }
 
     return (
         <>
             <Header />
             <SearchBar />
             <ContainerFilters>
-                <Filter name={'Language'} />
-                <Filter name={'Curriency'} />
-                <Filter name={'Region'} />
+                <Filter name={'Language'} options={languageOptions} onSelect={filterSelected} />
+                <Filter name={'Currency'} options={currencyOptions}  onSelect={filterSelected} />
+                <Filter name={'Region'} options={regionOptions}  onSelect={filterSelected}/>
             </ContainerFilters>
             <ContainerDisplay>
                 {loading ? <p>Loading...</p> : (!error) && <ListCountries countries={countries} />}
