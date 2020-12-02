@@ -22,25 +22,12 @@ const Search = styled.form`
         text-align: center;
         outline: none;
     }
-
-    .searchIcon {
-        width: 2%;
-        height: auto;
-        font-size: 1.8rem;
-        position: absolute;
-        left: 75%;
-        top: auto;
-        bottom: auto;
-        right: 0;
-        float: left;
-    }
 `
 
 function SearchBar() {
     return (
         <Search >
             <input type="search" placeholder="Enter name of country..."/>
-            <div className="searchIcon">🔍 </div>
         </Search>
     )
 }
