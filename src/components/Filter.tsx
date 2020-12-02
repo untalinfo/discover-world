@@ -7,11 +7,13 @@ const Content = styled.div`
     width: 15vw;
     height: auto;
     position: absolute;
-    max-height: 45vh;
+    max-height: 40vh;
     font-size: 1.8rem;
     border-radius: 1.5rem;
-    border: solid .03rem #004c5e;
-    margin-top: 6%;
+    border: solid 0.3rem #004c5e;
+    margin-top: 10%;
+    background-color:rgba(57, 200, 236, 0.938);
+    overflow-y: scroll;
 
     ul {
         list-style: none;
@@ -34,27 +36,48 @@ const Wrapper = styled.div`
     color:#124c56;
     cursor: pointer;
     align-items: center;
+    position: relative;
 
     &:hover{
-        border-bottom: solid 0.4rem #004c5e;
+        height: 20vh;
 
         ${Content} {
             visibility: visible;
             position: relative;
         }
+
+        p {
+            border-bottom: solid 0.4rem #004c5e;
+            width: 16vw;
+        }
+    }
+
+    p {
+        font-size: 2.4rem;
     }
 `
-const Filter = styled.span`
-    font-size: 2.4rem;
-`
+interface IProps {
+    name: string
+}
 
-function FilterLanguage() {
+function Filter(props: IProps) {
     return (
         <Wrapper>
-            <Filter> Languages </Filter>
+            <p> {props.name} ⋮ </p>
             <Content>
                 <ul>
                     <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li>
+                    <li>hola</li><li>hola</li>
                     <li>hola</li>
                     <li>hola</li>
                     <li>hola</li>
@@ -64,4 +87,4 @@ function FilterLanguage() {
     )
 }
 
-export default FilterLanguage;
+export default Filter;

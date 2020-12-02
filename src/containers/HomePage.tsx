@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import Header from '../components/Header';
 import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar'
-import FilterLanguage from '../components/FilterLanguage'
-import FilterCurrency from '../components/FilterCurrency'
-import FilterRegion from '../components/FilterRegion'
 import ListCountries from '../components/ListCountries'
 import { useQuery, gql } from '@apollo/client';
+import Filter from '../components/Filter';
 
+
+const desktop = `@media (min-width: 1024px)`;
+const tablet = `@media (min-width: 600px)`;
 
 const ContainerFilters = styled.section`
     width: 60vw;
@@ -23,12 +24,32 @@ const ContainerDisplay = styled.main`
     height: 50vh;
     overflow-y: scroll;
     margin: auto;
+    text-align: center;
+
+    p {
+        font-size: 4rem;
+    }
 
     a{
         text-decoration: none;
-        text-align:center;
-        font-size: 3rem;
+        font-size: 1rem;
         display: block;
+        font-size: 0.3rem;
+        font-style: normal;
+        color: #0d2338;
+
+        &:hover {
+            font-size: 3.4rem;
+            color: #70a32d;
+        }
+
+        ${tablet} {
+            font-size: 2rem;
+        }
+
+        ${desktop} {
+            font-size: 3rem;
+        }
     }
     
 `;
@@ -37,9 +58,28 @@ function HomePage(props: any): JSX.Element {
 
     const COUNTRIES = gql`
     query {
-        Country {
-        name
-      }
+            Country {
+            name
+            alpha2Code
+            area
+            population
+            capital
+            subregion {
+                name
+                region {
+                    name
+                }
+            }
+            officialLanguages {
+                name
+            }
+            currencies {
+                name
+            }
+            flag {
+                emoji
+            }
+        }
     }
 `;
 
@@ -58,12 +98,12 @@ function HomePage(props: any): JSX.Element {
             <Header />
             <SearchBar />
             <ContainerFilters>
-                <FilterLanguage />
-                <FilterCurrency />
-                <FilterRegion />
+                <Filter name={'Language'} />
+                <Filter name={'Curriency'} />
+                <Filter name={'Region'} />
             </ContainerFilters>
             <ContainerDisplay>
-                {loading ? 'Loading' : (!error) && <ListCountries countries={countries} />}
+                {loading ? <p>Loading...</p> : (!error) && <ListCountries countries={countries} />}
 
             </ContainerDisplay>
             <Footer />
