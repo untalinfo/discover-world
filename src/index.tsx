@@ -4,6 +4,7 @@ import App from './routes/App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyle } from './containers/GeneralStyled';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
