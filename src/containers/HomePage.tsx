@@ -50,8 +50,14 @@ interface IFiltersState {
     region: string;
 }
 
-function HomePage(props: any): JSX.Element {
+interface IProps {
+    [x: string]: any;
+    setSelectedCountry: Function;
+}
+
+function HomePage(props: IProps): JSX.Element {
     
+    const { setSelectedCountry } = props;
     const [countries, setCountries] = useState<[]>([]);
     const [languageOptions, setLanguageOptions] = useState<[]>([]);
     const [regionOptions, setRegionOptions] = useState<[]>([]);
@@ -61,6 +67,7 @@ function HomePage(props: any): JSX.Element {
         currency: '',
         region: '',
     });
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
     const { loading, data, error } = useQuery(WORLD_DATA);
 
@@ -70,21 +77,25 @@ function HomePage(props: any): JSX.Element {
             setLanguageOptions(data.Language);
             setCurrencyOptions(data.Currency);
             setRegionOptions(data.Region);
+            //setCountriesData(data.Country);
         }
     }, [data]);
 
     const filterSelected = (filterName: string, value: string) => {
-    
         setFilters((prevState) => ({
             ...prevState,
             [filterName]: value,
         }));
     };
 
+    const onChangeSearchBar = (data: string) => {
+        setSearchQuery(data);
+    };
+
     return (
         <>
             <Header />
-            <SearchBar />
+            <SearchBar onChange={onChangeSearchBar} />
             <ContainerFilters>
                 <Filter
                     name={'Language'}
@@ -110,6 +121,8 @@ function HomePage(props: any): JSX.Element {
                         <ListCountries
                             countries={countries}
                             filters={filters}
+                            searchQuery={searchQuery}
+                            setSelectedCountry={setSelectedCountry}
                         />
                     )
                 )}

@@ -3,9 +3,13 @@
 `A simple page. It gets data from an API and shows a list of countries that can be filtered by name or alpha2code and three filters`
 ## Getting Started with Create React App
 
-Clone this repository:
+__Clone this repository:__
 
-git clone https://github.com/untalinfo/discover-world
+`git clone https://github.com/untalinfo/discover-world`
+
+__Execute:__
+
+`npm install` - will install all necessary dependencies to run the project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
