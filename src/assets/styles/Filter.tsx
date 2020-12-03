@@ -19,6 +19,15 @@ export const Content = styled.div`
         margin: 3%;
     }
 
+    li {
+
+        &:hover {
+            color: #70a32d;
+            font-size: 2rem;
+        }
+
+    }
+
     &::before {
         content: "";
         left: 0;
