@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './routes/App';
 import reportWebVitals from './reportWebVitals';
-import { GlobalStyle } from './containers/GeneralStyled';
+import { GlobalStyle } from './assets/styles/GeneralStyled';
 
 
 ReactDOM.render(
